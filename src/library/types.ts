@@ -9,8 +9,8 @@ export interface Book {
   status: BookStatus;
   /** Numărul total de pagini (dacă e cunoscut). */
   pages: number | null;
-  /** Pagina la care am ajuns (pentru „Citesc acum”). */
-  currentPage: number;
+  /** Cât am citit, în procente (0–100). */
+  progress: number;
   /** 0 = fără notă, 1–5 stele. */
   rating: number;
   genre: string;

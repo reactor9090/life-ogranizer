@@ -1,9 +1,8 @@
-import { ArrowUpRight, Download, Flame, Plus, Upload } from 'lucide-react';
+import { ArrowUpRight, Download, Plus, Upload } from 'lucide-react';
 import { useMemo, useRef, type ReactNode } from 'react';
 import { APPS, type AppMeta } from '../apps';
 import { useFeedback } from '../components/ui/Feedback';
 import { Button, ProgressBar, ProgressRing, cx } from '../components/ui/primitives';
-import { HABIT_COLORS, currentStreak, isDone, isScheduled, useHabits } from '../habits/store';
 import { openApp } from '../hooks/useRoute';
 import { addDays, diffDays, formatLong } from '../lib/dates';
 import { applyEverything, exportEverything, readEverything } from '../lib/persist';
@@ -111,39 +110,6 @@ function GeoSummary() {
   );
 }
 
-function HabitsSummary() {
-  const { active, habitsData } = useHabits();
-  const { today } = useStore();
-  const due = active.filter((h) => isScheduled(h, today));
-  if (!active.length) return <Dashed>Alege primele obiceiuri</Dashed>;
-  const done = due.filter((h) => isDone(habitsData, h, today)).length;
-  const best = Math.max(0, ...active.map((h) => currentStreak(habitsData, h, today)));
-  return (
-    <div className="space-y-3">
-      <div className="flex flex-wrap gap-1.5">
-        {due.slice(0, 8).map((h) => {
-          const ok = isDone(habitsData, h, today);
-          return (
-            <span key={h.id} title={h.name} className={cx('flex h-8 w-8 items-center justify-center rounded-full text-sm transition-all', ok ? cx(HABIT_COLORS[h.color].bg, 'shadow-sm') : 'bg-slate-100 grayscale')}>
-              {h.emoji}
-            </span>
-          );
-        })}
-      </div>
-      <div className="flex items-center justify-between text-[13px]">
-        <span className="text-muted">
-          Azi: <span className="font-semibold text-ink tabular-nums">{done}</span> / {due.length}
-        </span>
-        {best > 0 && (
-          <span className="inline-flex items-center gap-1 font-medium text-ink">
-            <Flame className="h-3.5 w-3.5 text-orange-500" /> {best} zile
-          </span>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function JournalSummary() {
   const { journal } = useJournal();
   const { today } = useStore();
@@ -195,7 +161,7 @@ function LibrarySummary() {
           <div className="min-w-0 pb-0.5 text-[13px]">
             <div className="text-muted">Citesc acum</div>
             <div className="truncate font-medium text-ink">{reading[0].title}</div>
-            {reading[0].pages ? <div className="text-xs text-muted tabular-nums">{readingPct(reading[0])}% citit</div> : null}
+            <div className="text-xs text-muted tabular-nums">{readingPct(reading[0])}% citit</div>
           </div>
         </div>
       ) : (
@@ -218,7 +184,6 @@ function LibrarySummary() {
 const SUMMARIES: Record<AppMeta['id'], () => JSX.Element> = {
   today: TodaySummary,
   geo: GeoSummary,
-  habits: HabitsSummary,
   journal: JournalSummary,
   library: LibrarySummary,
 };

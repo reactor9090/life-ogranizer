@@ -1,6 +1,6 @@
 # Life Organizer
 
-Organizer personal cu mai multe aplicații: **Azi** (#/today), **BAC Geografie** (#/geo), **Obiceiuri** (#/habits),
+Organizer personal cu mai multe aplicații: **Azi** (#/today), **BAC Geografie** (#/geo),
 **Jurnal & Notițe** (#/journal) și **Bibliotecă** (#/library). Pe ecranul principal: „Backup complet” = un singur fișier cu toate datele.
 Ecranul principal (#/) arată toate aplicațiile. Biblioteca se salvează separat (cheia `lifeorg.library.v1`)
 și are propriul export/import JSON (butoanele din pagina Bibliotecă).
@@ -46,7 +46,8 @@ src/
   components/  ui/ (componente de bază), tasks/ (rând task, editare), layout/ (sidebar)
   pages/       Home (ecranul principal), Dashboard, StudyPlan, Calendar, Practice, Revision, Skills, Settings
   library/     aplicația Bibliotecă (date, căutare Open Library, pagina și panourile)
-  today/ habits/ journal/   aplicațiile Azi, Obiceiuri, Jurnal & Notițe (store.tsx + pagina)
+  today/ journal/   aplicațiile Azi, Jurnal & Notițe (store.tsx + pagina)
+  habits/      aplicația Obiceiuri — dezactivată momentan (codul și datele sunt păstrate)
   apps.ts      registrul aplicațiilor (nume, iconiță, culoare) · lib/persist.ts salvare comună
 ```
 

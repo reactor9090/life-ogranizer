@@ -1,5 +1,8 @@
 // ───────────────────────── Tipuri de bază ─────────────────────────
 
+import type { Difficulty } from '../lib/tags';
+export type { Difficulty };
+
 export type Status = 'not_started' | 'in_progress' | 'completed';
 export type Priority = 'low' | 'medium' | 'high';
 export type TaskType = 'theory' | 'map' | 'calculation' | 'practice' | 'revision';
@@ -36,6 +39,10 @@ export interface Task {
   month: MonthKey;
   /** Data fixă (simulări, zile de recapitulare) — nu e mutată de replanificare. */
   fixedDate?: boolean;
+  /** Etichete libere puse de utilizator. */
+  labels?: string[];
+  /** Cât de grea e tema (setată de utilizator). */
+  difficulty?: Difficulty | null;
 }
 
 export interface Module {

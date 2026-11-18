@@ -4,6 +4,7 @@
 import type { AppData, Settings, Task } from '../types';
 import { isValidISO, todayISO } from './dates';
 import { defaultSettings, mergeNewSeeds } from './seed';
+import { isDifficulty, normalizeLabels } from './tags';
 
 export const STORAGE_KEY = 'bacgeo2027.data.v1';
 const BACKUPS_KEY = 'bacgeo2027.backups.v1';
@@ -82,6 +83,8 @@ function normalizeTask(t: Record<string, unknown>): Task | null {
     order: typeof t.order === 'number' ? t.order : 0,
     month: s(t.month, '2026-11'),
     fixedDate: !!t.fixedDate,
+    labels: normalizeLabels(t.labels),
+    difficulty: isDifficulty(t.difficulty) ? t.difficulty : null,
   };
 }
 

@@ -11,9 +11,11 @@ export const STATUS_ORDER: BookStatus[] = ['reading', 'want', 'read', 'dropped']
 
 export function readingPct(b: Book): number {
   if (b.status === 'read') return 100;
-  if (!b.pages) return 0;
-  return Math.max(0, Math.min(100, Math.round((b.currentPage / b.pages) * 100)));
+  return Math.max(0, Math.min(100, Math.round(b.progress)));
 }
+
+/** Procentul nou, limitat la 0–100. */
+export const clampPct = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 
 export function libraryStats(books: Book[], year: number) {
   const y = String(year);

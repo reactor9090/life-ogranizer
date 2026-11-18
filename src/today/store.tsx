@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import { isValidISO, todayISO } from '../lib/dates';
 import { uid } from '../lib/ids';
 import { isObj, str, usePersisted } from '../lib/persist';
+import { isDifficulty, normalizeLabels, parseHashtags, type Difficulty } from '../lib/tags';
 import type { ISODate } from '../types';
 
 export interface Priority {
@@ -15,6 +16,9 @@ export interface Todo {
   date: ISODate;
   done: boolean;
   doneDate: ISODate | null;
+  /** Etichete libere (ex. „școală”, „casă”). */
+  labels: string[];
+  difficulty: Difficulty | null;
 }
 
 export interface TodayData {
@@ -40,7 +44,7 @@ function normalize(raw: unknown): TodayData {
   }
   const todos = (Array.isArray(raw.todos) ? raw.todos : []).filter(isObj).flatMap((t): Todo[] =>
     typeof t.id === 'string' && typeof t.text === 'string'
-      ? [{ id: t.id, text: t.text, date: isValidISO(t.date) ? t.date : todayISO(), done: !!t.done, doneDate: isValidISO(t.doneDate) ? t.doneDate : null }]
+      ? [{ id: t.id, text: t.text, date: isValidISO(t.date) ? t.date : todayISO(), done: !!t.done, doneDate: isValidISO(t.doneDate) ? t.doneDate : null, labels: normalizeLabels(t.labels), difficulty: isDifficulty(t.difficulty) ? t.difficulty : null }]
       : [],
   );
   return { version: 1, priorities, todos };
@@ -55,7 +59,8 @@ interface TodayStore {
   todayData: TodayData;
   saveError: boolean;
   setPriority: (date: ISODate, index: number, patch: Partial<Priority>) => void;
-  addTodo: (text: string, date: ISODate) => void;
+  /** „#eticheta” din text devine etichetă. */
+  addTodo: (text: string, date: ISODate, extra?: { labels?: string[]; difficulty?: Difficulty | null }) => void;
   toggleTodo: (id: string) => void;
   updateTodo: (id: string, patch: Partial<Todo>) => void;
   deleteTodo: (id: string) => Todo | undefined;
@@ -81,9 +86,14 @@ export function TodayProvider({ children }: { children: ReactNode }) {
           if (list.every((p) => !p.text.trim() && !p.done)) delete priorities[date];
           return { ...d, priorities };
         }),
-      addTodo: (text, date) => {
+      addTodo: (text, date, extra) => {
         if (!text.trim()) return;
-        setData((d) => ({ ...d, todos: [...d.todos, { id: uid('todo'), text: text.trim(), date, done: false, doneDate: null }] }));
+        const parsed = parseHashtags(text);
+        const labels = normalizeLabels([...(extra?.labels ?? []), ...parsed.labels]);
+        setData((d) => ({
+          ...d,
+          todos: [...d.todos, { id: uid('todo'), text: parsed.text, date, done: false, doneDate: null, labels, difficulty: extra?.difficulty ?? null }],
+        }));
       },
       toggleTodo: (id) =>
         setData((d) => ({

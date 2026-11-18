@@ -1,5 +1,7 @@
 import { CalendarPlus, CheckCircle2, RotateCcw, Trash2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { allLabels } from '../../lib/tags';
+import { DifficultyPicker, LabelEditor } from '../ui/Tags';
 import { CHAPTERS, CHAPTER_BY_ID, MODULE_BY_ID } from '../../data/curriculum';
 import { formatLong } from '../../lib/dates';
 import { PRIORITIES, PRIORITY_LABEL, STATUSES, STATUS_LABEL, TASK_TYPES, TYPE_LABEL } from '../../lib/labels';
@@ -21,6 +23,8 @@ export function TaskDrawer() {
     setTitle(task?.title ?? '');
     setNotes(task?.notes ?? '');
   }, [task?.id]);
+
+  const labelSuggestions = useMemo(() => allLabels(data.tasks), [data.tasks]);
 
   if (!task) return null;
   const ch = CHAPTER_BY_ID[task.chapterId];
@@ -160,6 +164,16 @@ export function TaskDrawer() {
               onChange={(e) => updateTask(task.id, { actualMin: num(e.target.value) })}
             />
           </Field>
+        </div>
+
+        <div>
+          <span className="mb-1.5 block text-[13px] font-medium text-ink">Dificultate</span>
+          <DifficultyPicker value={task.difficulty} onChange={(difficulty) => updateTask(task.id, { difficulty })} />
+        </div>
+
+        <div>
+          <span className="mb-1.5 block text-[13px] font-medium text-ink">Etichete</span>
+          <LabelEditor value={task.labels ?? []} onChange={(labels) => updateTask(task.id, { labels })} suggestions={labelSuggestions} />
         </div>
 
         {task.custom && (

@@ -8,6 +8,7 @@ import { useStore } from '../../store/AppStore';
 import type { Task } from '../../types';
 import { Badge, Checkbox, IconButton, cx } from '../ui/primitives';
 import { useFeedback } from '../ui/Feedback';
+import { DifficultyChip, LabelChip } from '../ui/Tags';
 import { DateChip } from './DateChip';
 
 export function TaskRow({
@@ -57,6 +58,10 @@ export function TaskRow({
           <span className={cx('inline-flex items-center gap-1 rounded px-1.5 py-px text-[11px] font-medium', TYPE_STYLE[task.type].chip)}>
             {TYPE_LABEL[task.type]}
           </span>
+          {task.difficulty && <DifficultyChip value={task.difficulty} />}
+          {task.labels?.map((l) => (
+            <LabelChip key={l} label={l} />
+          ))}
           <span className="inline-flex items-center gap-1">
             <Clock className="h-3 w-3" />
             {formatMinutes(task.estimatedMin)}

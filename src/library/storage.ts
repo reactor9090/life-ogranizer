@@ -18,6 +18,16 @@ export const emptyLibrary = (): LibraryData => ({
   updatedAt: new Date().toISOString(),
 });
 
+/** Procentul citit; datele vechi (pagina curentă) sunt convertite automat. */
+function progressFrom(b: Record<string, unknown>): number {
+  const clamp = (v: number) => Math.max(0, Math.min(100, Math.round(v)));
+  if (typeof b.progress === 'number' && Number.isFinite(b.progress)) return clamp(b.progress);
+  if (b.status === 'read') return 100;
+  const cur = typeof b.currentPage === 'number' ? b.currentPage : 0;
+  const pages = typeof b.pages === 'number' ? b.pages : 0;
+  return pages > 0 && cur > 0 ? clamp((cur / pages) * 100) : 0;
+}
+
 function normalizeBook(b: Record<string, unknown>): Book | null {
   if (typeof b.id !== 'string' || typeof b.title !== 'string') return null;
   const s = (v: unknown) => (typeof v === 'string' ? v : '');
@@ -29,7 +39,7 @@ function normalizeBook(b: Record<string, unknown>): Book | null {
     author: s(b.author),
     status: STATUSES.includes(b.status as BookStatus) ? (b.status as BookStatus) : 'want',
     pages: n(b.pages),
-    currentPage: n(b.currentPage) ?? 0,
+    progress: progressFrom(b),
     rating: typeof b.rating === 'number' ? Math.max(0, Math.min(5, Math.round(b.rating))) : 0,
     genre: s(b.genre),
     coverUrl: s(b.coverUrl),

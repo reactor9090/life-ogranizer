@@ -39,6 +39,8 @@ export interface NewTaskInput {
   deadline?: ISODate | null;
   estimatedMin?: number;
   notes?: string;
+  labels?: string[];
+  difficulty?: Task['difficulty'];
 }
 
 export interface NewRevisionInput {
@@ -197,6 +199,8 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
             estimatedMin: input.estimatedMin ?? 30,
             actualMin: null,
             notes: input.notes ?? '',
+            labels: input.labels ?? [],
+            difficulty: input.difficulty ?? null,
             custom: true,
             support: false,
             order: maxOrder + 1,

@@ -5,8 +5,6 @@ import { MobileNav, Sidebar } from './components/layout/Sidebar';
 import { TaskDrawer } from './components/tasks/TaskDrawer';
 import { FeedbackProvider } from './components/ui/Feedback';
 import { cx } from './components/ui/primitives';
-import { HabitsPage } from './habits/HabitsPage';
-import { HabitsProvider, useHabits } from './habits/store';
 import { openApp, useLocation, type Route } from './hooks/useRoute';
 import { JournalPage } from './journal/JournalPage';
 import { JournalProvider, useJournal } from './journal/store';
@@ -122,7 +120,6 @@ function AppFrame({ app, saveError, children }: { app: AppMeta; saveError?: bool
 function Shell() {
   const loc = useLocation();
   const lib = useLibrary();
-  const habits = useHabits();
   const journal = useJournal();
   const today = useToday();
   const geo = useStore();
@@ -136,12 +133,6 @@ function Shell() {
           <LibraryPage />
         </AppFrame>
       );
-    case 'habits':
-      return (
-        <AppFrame app={APP_BY_ID.habits} saveError={habits.saveError}>
-          <HabitsPage />
-        </AppFrame>
-      );
     case 'journal':
       return (
         <AppFrame app={APP_BY_ID.journal} saveError={journal.saveError}>
@@ -150,7 +141,7 @@ function Shell() {
       );
     case 'today':
       return (
-        <AppFrame app={APP_BY_ID.today} saveError={today.saveError || habits.saveError || journal.saveError || geo.saveError}>
+        <AppFrame app={APP_BY_ID.today} saveError={today.saveError || journal.saveError || geo.saveError}>
           <TodayPage />
         </AppFrame>
       );
@@ -163,7 +154,6 @@ export default function App() {
   return (
     <AppStoreProvider>
       <LibraryProvider>
-        <HabitsProvider>
           <JournalProvider>
             <TodayProvider>
               <FeedbackProvider>
@@ -171,7 +161,6 @@ export default function App() {
               </FeedbackProvider>
             </TodayProvider>
           </JournalProvider>
-        </HabitsProvider>
       </LibraryProvider>
     </AppStoreProvider>
   );

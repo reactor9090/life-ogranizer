@@ -6,6 +6,8 @@ import { useStore } from '../../store/AppStore';
 import type { ISODate, Priority, TaskType } from '../../types';
 import { useFeedback } from '../ui/Feedback';
 import { Button, Input, Select, cx } from '../ui/primitives';
+import { DifficultyPicker } from '../ui/Tags';
+import { parseHashtags, type Difficulty } from '../../lib/tags';
 
 /** Formular compact pentru un task personal. Dacă `chapterId` lipsește, se alege capitolul. */
 export function AddTaskForm({
@@ -29,11 +31,13 @@ export function AddTaskForm({
   const [priority, setPriority] = useState<Priority>('medium');
   const [date, setDate] = useState<string>(defaultDate === undefined ? today : (defaultDate ?? ''));
   const [est, setEst] = useState(30);
+  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
-    addTask({ title, chapterId: chapter, type, priority, plannedDate: date || null, estimatedMin: est });
+    const parsed = parseHashtags(title);
+    addTask({ title: parsed.text, chapterId: chapter, type, priority, plannedDate: date || null, estimatedMin: est, difficulty, labels: parsed.labels });
     toast('Task personal adăugat.');
     setTitle('');
     onDone?.();
@@ -45,7 +49,7 @@ export function AddTaskForm({
         autoFocus={autoFocus}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Titlul taskului personal…"
+        placeholder="Titlul taskului personal… (poți scrie #etichetă)"
         aria-label="Titlul taskului"
       />
       <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -74,6 +78,10 @@ export function AddTaskForm({
         </Select>
         <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="Data planificată" />
         <Input type="number" min={5} step={5} value={est} onChange={(e) => setEst(Number(e.target.value) || 30)} aria-label="Minute estimate" title="Minute estimate" />
+      </div>
+      <div className="mt-2.5 flex flex-wrap items-center gap-2">
+        <span className="text-xs font-medium text-muted">Dificultate:</span>
+        <DifficultyPicker value={difficulty} onChange={setDifficulty} size="sm" />
       </div>
       <div className="mt-2.5 flex justify-end gap-2">
         {onDone && (

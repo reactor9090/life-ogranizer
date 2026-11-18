@@ -10,6 +10,8 @@ import { AddTaskForm } from '../components/tasks/AddTaskForm';
 import { TaskRow } from '../components/tasks/TaskRow';
 import { useFeedback } from '../components/ui/Feedback';
 import { Badge, Button, Card, Checkbox, EmptyState, Input, ProgressBar, Segmented, Select, cx } from '../components/ui/primitives';
+import { TagFilter } from '../components/ui/Tags';
+import { allLabels, hasLabel, type Difficulty } from '../lib/tags';
 
 type Filter = 'all' | 'not_started' | 'in_progress' | 'completed' | 'overdue';
 
@@ -36,6 +38,9 @@ export function StudyPlan() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
   const [type, setType] = useState<TaskType | 'all'>('all');
+  const [fLabel, setFLabel] = useState<string | null>(null);
+  const [fDiff, setFDiff] = useState<Difficulty | null>(null);
+  const labels = useMemo(() => allLabels(tasks), [tasks]);
   const [adding, setAdding] = useState(false);
   const [open, setOpen] = useState<Set<string>>(() => {
     const saved = loadOpen();
@@ -74,15 +79,17 @@ export function StudyPlan() {
   }, [tasks, type, today]);
 
   const q = norm(query.trim());
-  const filtering = q !== '' || filter !== 'all' || type !== 'all';
+  const filtering = q !== '' || filter !== 'all' || type !== 'all' || !!fLabel || !!fDiff;
 
   const visible = useMemo(() => {
     const match = (t: Task) =>
       (filter === 'all' || (filter === 'overdue' ? isOverdue(t, today) : t.status === (filter as Status))) &&
       (type === 'all' || t.type === type) &&
+      (!fLabel || hasLabel(t.labels, fLabel)) &&
+      (!fDiff || t.difficulty === fDiff) &&
       (!q || norm(t.title).includes(q));
     return tasks.filter(match);
-  }, [tasks, filter, type, q, today]);
+  }, [tasks, filter, type, q, today, fLabel, fDiff]);
 
   const visibleByChapter = useMemo(() => groupBy(visible, (t) => t.chapterId), [visible]);
   const allByChapter = useMemo(() => groupBy(tasks, (t) => t.chapterId), [tasks]);
@@ -149,6 +156,10 @@ export function StudyPlan() {
             ))}
           </Select>
         </div>
+      </div>
+
+      <div className="mb-4">
+        <TagFilter labels={labels} label={fLabel} onLabel={setFLabel} difficulty={fDiff} onDifficulty={setFDiff} />
       </div>
 
       {filtering && (

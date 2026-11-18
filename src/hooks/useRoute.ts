@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 export type Route = 'dashboard' | 'plan' | 'calendar' | 'practice' | 'revision' | 'skills' | 'settings';
 
 /** Aplicațiile din organizer. */
-export type AppId = 'home' | 'today' | 'geo' | 'habits' | 'journal' | 'library';
+export type AppId = 'home' | 'today' | 'geo' | 'journal' | 'library';
 
 export type Location =
   | { app: 'home' }
   | { app: 'geo'; page: Route }
   | { app: 'journal'; tab: 'journal' | 'notes' }
-  | { app: 'today' | 'habits' | 'library' };
+  | { app: 'today' | 'library' };
 
 const GEO_ROUTES: Route[] = ['dashboard', 'plan', 'calendar', 'practice', 'revision', 'skills', 'settings'];
 const isGeo = (s: string | undefined): s is Route => !!s && (GEO_ROUTES as string[]).includes(s);
@@ -19,7 +19,7 @@ function parse(): Location {
   const parts = window.location.hash.replace(/^#\/?/, '').split('?')[0].split('/').filter(Boolean);
   const [a, b] = parts;
   if (a === 'geo') return { app: 'geo', page: isGeo(b) ? b : 'dashboard' };
-  if (a === 'library' || a === 'today' || a === 'habits') return { app: a };
+  if (a === 'library' || a === 'today') return { app: a };
   if (a === 'journal') return { app: 'journal', tab: b === 'notes' ? 'notes' : 'journal' };
   // Linkuri vechi (#/plan, #/calendar…) — duc tot în BAC Geografie.
   if (isGeo(a)) return { app: 'geo', page: a };

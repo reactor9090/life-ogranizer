@@ -32,12 +32,12 @@ function withStatus(b: Book, status: BookStatus): Book {
   if (status === 'read') {
     next.finishDate = b.finishDate ?? today;
     next.startDate = b.startDate ?? next.finishDate;
-    if (b.pages) next.currentPage = b.pages;
+    next.progress = 100;
   }
   if (status === 'want') {
     next.startDate = null;
     next.finishDate = null;
-    next.currentPage = 0;
+    next.progress = 0;
   }
   if (status === 'reading') next.finishDate = null;
   return next;
@@ -97,7 +97,7 @@ export function LibraryProvider({ children }: { children: ReactNode }) {
           author: input.author.trim(),
           status: 'want',
           pages: input.pages ?? null,
-          currentPage: 0,
+          progress: 0,
           rating: input.rating ?? 0,
           genre: input.genre?.trim() ?? '',
           coverUrl: input.coverUrl ?? '',

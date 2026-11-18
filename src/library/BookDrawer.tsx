@@ -2,10 +2,10 @@ import { Heart, Loader2, Search, Trash2, WifiOff } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Drawer } from '../components/ui/Drawer';
 import { useFeedback } from '../components/ui/Feedback';
-import { Button, Field, Input, ProgressBar, Segmented, Textarea, cx } from '../components/ui/primitives';
+import { Button, Field, Input, Segmented, Textarea, cx } from '../components/ui/primitives';
 import { formatShort } from '../lib/dates';
 import { BookCover, Stars } from './components';
-import { STATUS_META, STATUS_ORDER, readingPct, searchBooks, type BookSearchResult } from './helpers';
+import { STATUS_META, STATUS_ORDER, clampPct, readingPct, searchBooks, type BookSearchResult } from './helpers';
 import { useLibrary } from './LibraryStore';
 import type { BookStatus } from './types';
 
@@ -255,23 +255,38 @@ export function BookDetailDrawer() {
           <div className="rounded-xl border border-line bg-slate-50/70 p-3.5">
             <div className="flex items-center justify-between text-[13px]">
               <span className="font-medium text-ink">Progres lectură</span>
-              <span className="text-muted tabular-nums">{book.pages ? `${pct}%` : 'adaugă nr. de pagini'}</span>
+              <span className="font-semibold text-ink tabular-nums">{pct}%</span>
             </div>
-            <ProgressBar value={pct} className="mt-2" />
-            <div className="mt-3 flex items-center gap-2 text-sm">
-              <span className="text-muted">Am ajuns la pagina</span>
+            <input
+              type="range"
+              min={0}
+              max={100}
+              step={1}
+              value={pct}
+              onChange={(e) => set({ progress: clampPct(Number(e.target.value)) })}
+              aria-label="Procent citit"
+              className="mt-3 w-full accent-accent"
+            />
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
+              <span className="text-muted">Am citit</span>
               <Input
                 inputMode="numeric"
-                value={book.currentPage || ''}
-                onChange={(e) => {
-                  const n = toNum(e.target.value) ?? 0;
-                  set({ currentPage: book.pages ? Math.min(n, book.pages) : n });
-                }}
-                className="!h-8 w-20 text-center tabular-nums"
+                value={book.progress || ''}
+                placeholder="0"
+                onChange={(e) => set({ progress: clampPct(Number(e.target.value.replace(/\D/g, '')) || 0) })}
+                className="!h-8 w-16 text-center tabular-nums"
+                aria-label="Procent citit (0–100)"
               />
-              {book.pages && <span className="text-muted">din {book.pages}</span>}
+              <span className="text-muted">% din 100</span>
+              <div className="ml-auto flex gap-1">
+                {[25, 50, 75].map((v) => (
+                  <button key={v} type="button" onClick={() => set({ progress: v })} className={cx('h-7 rounded-md px-2 text-xs font-medium', pct === v ? 'bg-accent-soft text-blue-700' : 'text-muted hover:bg-white hover:text-ink')}>
+                    {v}%
+                  </button>
+                ))}
+              </div>
             </div>
-            {book.status === 'reading' && book.pages && book.currentPage >= book.pages && (
+            {book.status === 'reading' && pct >= 100 && (
               <Button size="sm" variant="soft" className="mt-3" onClick={() => set({ status: 'read' })}>
                 Am terminat-o 🎉
               </Button>

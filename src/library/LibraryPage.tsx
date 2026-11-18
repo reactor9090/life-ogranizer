@@ -5,7 +5,7 @@ import { useFeedback } from '../components/ui/Feedback';
 import { Button, Card, EmptyState, IconButton, Input, ProgressBar, Segmented, Select, cx } from '../components/ui/primitives';
 import { BookCover, FavoriteMark, Stars } from './components';
 import { AddBookDrawer, BookDetailDrawer } from './BookDrawer';
-import { STATUS_META, libraryStats, readingPct } from './helpers';
+import { STATUS_META, clampPct, libraryStats, readingPct } from './helpers';
 import { useLibrary } from './LibraryStore';
 import { downloadLibrary, readLibraryFile } from './storage';
 import type { Book, BookStatus } from './types';
@@ -93,25 +93,17 @@ function ReadingCard({ book }: { book: Book }) {
           </button>
           <div className="mt-auto pt-3">
             <div className="flex items-center justify-between text-xs text-muted">
-              <span className="tabular-nums">{book.pages ? `p. ${book.currentPage} / ${book.pages}` : 'nr. de pagini necunoscut'}</span>
-              <span className="font-semibold text-ink tabular-nums">{book.pages ? `${pct}%` : ''}</span>
+              <span>Citit</span>
+              <span className="font-semibold text-ink tabular-nums">{pct}%</span>
             </div>
             <ProgressBar value={pct} size="sm" className="mt-1.5" />
             <div className="mt-2.5 flex items-center gap-1.5">
-              {book.pages ? (
-                <>
-                  <Button size="sm" variant="soft" className="!h-7 !px-2 !text-xs" onClick={() => updateBook(book.id, { currentPage: Math.min(book.pages!, book.currentPage + 10) })}>
-                    +10 pag.
-                  </Button>
-                  <Button size="sm" variant="soft" className="!h-7 !px-2 !text-xs" onClick={() => updateBook(book.id, { currentPage: Math.min(book.pages!, book.currentPage + 25) })}>
-                    +25
-                  </Button>
-                </>
-              ) : (
-                <Button size="sm" variant="ghost" className="!h-7 !px-2 !text-xs" onClick={() => openBook(book.id)}>
-                  Adaugă pagini
-                </Button>
-              )}
+              <Button size="sm" variant="soft" className="!h-7 !px-2 !text-xs" onClick={() => updateBook(book.id, { progress: clampPct(pct + 5) })}>
+                +5%
+              </Button>
+              <Button size="sm" variant="soft" className="!h-7 !px-2 !text-xs" onClick={() => updateBook(book.id, { progress: clampPct(pct + 10) })}>
+                +10%
+              </Button>
               <Button size="sm" variant="ghost" className="ml-auto !h-7 !px-2 !text-xs" onClick={() => updateBook(book.id, { status: 'read' })}>
                 <BookOpenCheck className="h-3.5 w-3.5" /> Terminată
               </Button>
@@ -135,7 +127,7 @@ function BookTile({ book }: { book: Book }) {
           {meta.short}
         </span>
         {book.favorite && <FavoriteMark className="absolute top-2 right-2" />}
-        {book.status === 'reading' && book.pages ? (
+        {book.status === 'reading' && readingPct(book) > 0 ? (
           <div className="absolute inset-x-2 bottom-2 h-1 overflow-hidden rounded-full bg-black/25">
             <div className="h-full rounded-full bg-white" style={{ width: `${readingPct(book)}%` }} />
           </div>
