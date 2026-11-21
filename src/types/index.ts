@@ -118,6 +118,8 @@ export interface Settings {
 
 export interface AppData {
   version: 1;
+  /** Versiunea structurii materiei (lipsă = 1). */
+  curriculumVersion?: number;
   createdAt: string;
   updatedAt: string;
   settings: Settings;

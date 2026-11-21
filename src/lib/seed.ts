@@ -1,5 +1,5 @@
 /** Generarea datelor inițiale din structura materiei. */
-import { MODULE_SEEDS, WEEKLY_REVISION_CHAPTER, chapterId } from '../data/curriculum';
+import { CURRICULUM_VERSION, MODULE_SEEDS, WEEKLY_REVISION_CHAPTER, chapterId } from '../data/curriculum';
 import { SEED_SKILLS } from '../data/skills';
 import type { AppData, ISODate, Settings, Task, TaskType } from '../types';
 import { addDays, monthOf, weekday } from './dates';
@@ -27,8 +27,29 @@ export function defaultSettings(today: ISODate): Settings {
   };
 }
 
+/** ID stabil: versiunea programei + modul + capitol + poziție (ex. „v2-m1-1.2-04”). */
 export function seedTaskId(moduleId: string, code: string, i: number) {
-  return `${moduleId}-${code}-${String(i + 1).padStart(2, '0')}`;
+  return `v${CURRICULUM_VERSION}-${moduleId}-${code}-${String(i + 1).padStart(2, '0')}`;
+}
+
+/** ID-ul unei teme din versiunea 1 a programei, din referința „cod/nr” (ex. '1.2/5'). */
+export function v1TaskId(ref: string) {
+  const [code, n] = ref.split('/');
+  const mod = code.startsWith('P') ? 'mp' : `m${code.split('.')[0]}`;
+  return `${mod}-${code}-${n.padStart(2, '0')}`;
+}
+
+/** Pentru fiecare temă nouă: ID-urile temelor din versiunea 1 din care provine. */
+export function seedOrigins(): Map<string, string[]> {
+  const out = new Map<string, string[]>();
+  for (const mod of MODULE_SEEDS) {
+    for (const ch of mod.chapters) {
+      ch.items.forEach((it, i) => {
+        if (it.from?.length) out.set(seedTaskId(mod.id, ch.code, i), it.from.map(v1TaskId));
+      });
+    }
+  }
+  return out;
 }
 
 /** Toate taskurile din programă, încă neprogramate (cu excepția celor cu dată fixă). */
@@ -105,6 +126,7 @@ export function createInitialData(today: ISODate): AppData {
   const now = new Date().toISOString();
   return {
     version: 1,
+    curriculumVersion: CURRICULUM_VERSION,
     createdAt: now,
     updatedAt: now,
     settings,

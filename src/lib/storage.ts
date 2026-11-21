@@ -3,10 +3,13 @@
  */
 import type { AppData, Settings, Task } from '../types';
 import { isValidISO, todayISO } from './dates';
+import { migrateCurriculum, needsMigration } from './migrate';
 import { defaultSettings, mergeNewSeeds } from './seed';
 import { isDifficulty, normalizeLabels } from './tags';
 
 export const STORAGE_KEY = 'bacgeo2027.data.v1';
+/** Copia datelor dinainte de trecerea la programa v2. */
+const PRE_MIGRATION_KEY = 'bacgeo2027.data.v1.before-curriculum-v2';
 const BACKUPS_KEY = 'bacgeo2027.backups.v1';
 const MAX_BACKUPS = 7;
 
@@ -97,6 +100,7 @@ export function normalizeData(raw: unknown): AppData {
   const now = new Date().toISOString();
   const data: AppData = {
     version: 1,
+    curriculumVersion: typeof raw.curriculumVersion === 'number' ? raw.curriculumVersion : 1,
     createdAt: typeof raw.createdAt === 'string' ? raw.createdAt : now,
     updatedAt: typeof raw.updatedAt === 'string' ? raw.updatedAt : now,
     settings: normalizeSettings(raw.settings),
@@ -111,6 +115,11 @@ export function normalizeData(raw: unknown): AppData {
       : [],
     skills: Array.isArray(raw.skills) ? (raw.skills.filter(isObj) as unknown as AppData['skills']) : [],
   };
+  if (needsMigration(data)) {
+    // Copie de siguranță a datelor dinainte de schimbarea programei (o singură dată).
+    if (!safeGet(PRE_MIGRATION_KEY)) safeSet(PRE_MIGRATION_KEY, JSON.stringify(raw));
+    return mergeNewSeeds(migrateCurriculum(data, todayISO()));
+  }
   return mergeNewSeeds(data);
 }
 

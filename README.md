@@ -55,7 +55,14 @@ Pentru a adăuga o temă în programă, editează `src/data/curriculum.ts` și a
 **finalul** capitolului (ID-urile se bazează pe poziție). Temele noi apar automat în
 datele existente, fără să afecteze progresul.
 
+Pentru o restructurare completă a programei, crește `CURRICULUM_VERSION` și indică la
+fiecare temă nouă, în `from`, temele vechi din care provine — `src/lib/migrate.ts`
+transferă automat progresul (o copie a datelor vechi rămâne în
+`bacgeo2027.data.v1.before-curriculum-v2`).
+
 ## Sursa programei
 
-„Geografie. Programă pentru examenul național de bacalaureat”, ANCE, aprobată
-la 04.11.2021 — https://ance.gov.md/content/programe-de-examene
+Structura materiei (v2) urmează `Geografie_BAC_2027_Project_Updated.txt`, bazat pe
+„Geografie. Programă pentru examenul național de bacalaureat”, ANCE, aprobată prin
+Ordinul MEC nr. 1499 din 04.11.2021, aplicabilă sesiunii 2027 conform Ordinului MEC
+nr. 2046 din 08.10.2026 — https://ance.gov.md/content/programe-de-examene

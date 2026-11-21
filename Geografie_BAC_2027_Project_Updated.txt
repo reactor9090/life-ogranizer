@@ -1,0 +1,1010 @@
+# PROJECT: PERSONAL GEOGRAPHY BAC 2027 DASHBOARD
+
+## 1. Scopul proiectului
+
+Construiește o aplicație web personală, modernă și intuitivă, pentru organizarea pregătirii mele la examenul național de Bacalaureat la Geografie din Republica Moldova, sesiunea iunie 2027.
+
+IMPORTANT: Aceasta NU este o platformă educațională și NU trebuie să conțină lecții, explicații sau manuale.
+
+Este un sistem personal de tip **To-Do List + Study Planner + Progress Tracker**.
+
+Eu voi învăța individual din manuale, atlase, videoclipuri și alte resurse. Aplicația trebuie doar să-mi organizeze materia și să-mi urmărească progresul.
+
+## 2. Informații despre utilizator
+
+- Examen: BAC Geografie – Republica Moldova.
+- Sesiune: iunie 2027.
+- Data planificată a probei: 18 iunie 2027 (conform calendarului publicat; permite modificarea datei).
+- Nivel actual: începător, aproape de la zero.
+- Nu am cunoștințe solide de geografie din clasele gimnaziale.
+- Obiectiv: să parcurg întreaga programă și să obțin o notă bună la examen.
+- Stil de învățare: studiu individual, organizat în teme și subteme.
+- Limba aplicației: română.
+
+## 3. Design și identitate vizuală
+
+Vreau un design Clean Light, minimalist, premium și modern.
+
+Referințe vizuale:
+- Notion
+- Linear
+- Todoist
+- Minimalist productivity dashboards
+
+Paletă:
+- Background: #F8FAFC
+- Carduri: #FFFFFF
+- Text principal: #172033
+- Text secundar: #64748B
+- Accent principal: #2563EB
+- Accent secundar: #DBEAFE
+- Verde pentru completat: #16A34A
+- Portocaliu pentru atenționări: #F59E0B
+
+Design:
+- Mult spațiu alb.
+- Colțuri rotunjite discret.
+- Umbre foarte subtile.
+- Font modern: Inter.
+- Iconițe Lucide.
+- Animații discrete.
+- Tranziții fluide.
+- Responsive pentru desktop, tabletă și telefon.
+
+Evită:
+- Culori prea puternice.
+- Gradienturi excesive.
+- Elemente decorative inutile.
+- Carduri foarte mari.
+- Aspectul unui site școlar pentru copii.
+
+Vreau să pară un dashboard profesional de productivitate.
+
+## 4. Structura aplicației
+
+Creează următoarele pagini:
+
+### A. DASHBOARD – Pagina principală
+
+Aceasta trebuie să fie prima pagină pe care o văd când deschid aplicația.
+
+Include:
+
+**Header:**
+- Salut personalizat: „Salut! Hai să progresăm astăzi.”
+- Data curentă.
+- Countdown până la BAC 2027.
+- Buton pentru setări.
+
+**Statistici principale:**
+1. Progres general (%).
+2. Teme completate.
+3. Teme rămase.
+4. Zile până la BAC.
+5. Capitole finalizate.
+
+**Progres vizual:**
+- Progress bar general.
+- Progres separat pentru fiecare domeniu geografic.
+- Progresul planului lunar.
+
+**Secțiunea „Today's Tasks”:**
+Afișează temele programate pentru ziua curentă.
+
+Fiecare task trebuie să aibă:
+- Checkbox.
+- Titlu.
+- Capitol.
+- Prioritate.
+- Dată limită.
+- Estimare de timp.
+- Posibilitatea de a-l marca drept finalizat.
+
+**Secțiunea „Continue Learning”:**
+Arată capitolul la care am rămas și următoarea temă nefinalizată.
+
+**Secțiunea „Upcoming”:**
+Următoarele 5 teme programate.
+
+### B. STUDY PLAN – Planul complet
+
+Aceasta este cea mai importantă pagină.
+
+Organizează toată materia în capitole și subcapitole.
+
+Vreau o structură de tip:
+
+CAPITOL → SUBCAPITOL → TASK.
+
+Fiecare subcapitol trebuie să fie bifabil.
+
+Funcționalități:
+- Expand/collapse pentru capitole.
+- Checkbox pentru fiecare temă.
+- Progress bar pentru fiecare capitol.
+- Numărul temelor completate.
+- Numărul temelor rămase.
+- Filtrare: toate, neîncepute, în desfășurare, finalizate.
+- Căutare după denumirea temei.
+- Posibilitatea de a modifica data limită.
+- Posibilitatea de a adăuga taskuri personale.
+
+Nu marca automat capitolul drept finalizat dacă nu sunt completate toate subtemele.
+
+### C. CALENDAR
+
+Calendar lunar și săptămânal.
+
+Include:
+- Temele planificate pentru fiecare zi.
+- Termenele limită.
+- Zilele de recapitulare.
+- Simulările BAC.
+- Posibilitatea de a muta un task dintr-o zi în alta.
+
+Taskurile nefinalizate trebuie să poată fi reprogramate ușor.
+
+Nu șterge automat taskurile restante.
+
+### D. BAC PRACTICE
+
+O pagină dedicată urmăririi exercițiilor din subiectele oficiale.
+
+Nu trebuie să construiești teste sau exerciții educaționale în aplicație.
+
+Vreau doar să pot înregistra:
+
+- Anul subiectului: 2025, 2026, 2027 etc.
+- Data rezolvării.
+- Punctaj obținut din 100.
+- Nota obținută.
+- Timpul necesar.
+- Observații personale.
+- Greșelile identificate.
+- Temele pe care trebuie să le repet.
+
+Afișează istoricul simulărilor într-un tabel și un grafic al evoluției rezultatelor.
+
+Permite înregistrarea mai multor simulări.
+
+### E. REVISION – Recapitulare
+
+O secțiune în care pot urmări temele care trebuie repetate.
+
+Permite:
+- Adăugarea manuală a unei teme la recapitulare.
+- Stabilirea unei date pentru repetare.
+- Marcarea recapitulării drept efectuată.
+- Vizualizarea temelor restante.
+
+Sugerează un sistem de repetare la intervale:
+- Prima repetare: după 1 zi.
+- A doua: după 3 zile.
+- A treia: după 7 zile.
+- A patra: după 14 zile.
+- A cincea: după 30 de zile.
+
+Acestea trebuie să fie recomandări, nu obligații.
+
+### F. FORMULAS & MAP SKILLS – Evidență
+
+Nu introduce explicații sau lecții.
+
+Creează o listă de competențe și categorii pe care trebuie să le studiez și să le exersez:
+
+- Coordonate geografice.
+- Scara hărții.
+- Calcularea distanțelor.
+- Fusuri orare.
+- Temperatura și amplitudinea termică.
+- Gradientul termic.
+- Densitatea populației.
+- Natalitatea și mortalitatea.
+- Bilanțul natural.
+- Indicatori demografici și economici.
+- Interpretarea climogramelor.
+- Interpretarea diagramelor și graficelor.
+- Interpretarea hărților tematice.
+- Localizarea obiectivelor geografice.
+
+Fiecare element trebuie să fie bifabil și să aibă posibilitatea de a adăuga observații personale.
+
+## 5. MATERIA DE ÎNVĂȚAT – CURRICULUM OPTIMIZAT PENTRU BAC 2027
+
+### 5.0. PRINCIPII DE ORGANIZARE A CURRICULUMULUI
+
+Scopul acestei structuri este pregătirea eficientă pentru examenul național de Bacalaureat la Geografie, Republica Moldova, sesiunea 2027.
+
+Programa oficială de referință este „Geografie – Programă pentru examenul național de bacalaureat”, aprobată prin Ordinul MEC nr. 1499 din 04.11.2021. Pentru sesiunea 2027 se aplică programele de examen aprobate prin Ordinul MEC nr. 2046 din 08.10.2026. Dacă ANCE/MEC publică o rectificare sau o precizare ulterioară, aceasta prevalează.
+
+Organizarea oficială a programei este reflectată în cele trei domenii mari:
+1. Geografia fizică generală.
+2. Geografia umană a lumii.
+3. Geografie: Republica Moldova și lumea contemporană.
+
+Păstrează cele 7 module de mai jos ca structură practică a aplicației, dar nu trata toate modulele ca având aceeași pondere. Modulele 1–6 organizează conținuturile, iar Modulul 7 este o componentă transversală, exersată permanent.
+
+REGULI DE PRIORITIZARE:
+- PRIORITATE A – conținut menționat explicit în programa oficială sau necesar direct pentru rezultatele învățării.
+- PRIORITATE B – obiective geografice și localizări prevăzute în curriculumul liceal la clasele X–XII; acestea sunt obligatorii ca rezultate ale învățării, conform notelor din programa de BAC.
+- PRIORITATE C – explicații suplimentare strict necesare pentru înțelegere și aplicare. Acestea nu trebuie transformate în capitole extinse și nu trebuie să înlocuiască exercițiile BAC.
+
+Nu adăuga teme doar pentru că sunt interesante. Nu transforma curriculumul într-un manual universitar. Păstrează timpul total de pregătire planificat până la examen; optimizează profunzimea și ordinea, nu mări artificial volumul.
+
+Fiecare subtemă trebuie împărțită în taskuri suficient de mici pentru a fi bifate individual. Pentru fiecare temă, aplicația poate urmări separat: TEORIE, HARTĂ/LOCALIZARE, CALCUL, INTERPRETARE, ITEM BAC și RECAPITULARE. Nu crea automat toate tipurile dacă nu sunt relevante pentru tema respectivă.
+
+### MODULUL 1 – PĂMÂNTUL ȘI BAZELE CARTOGRAFIEI
+
+Acest modul corespunde începutului domeniului oficial „Geografia fizică generală”.
+
+1.1. Pământul – individualitate în Univers
+- Pământul în Sistemul Solar – poziția și caracteristicile relevante.
+- Forma Pământului și consecințele ei geografice.
+- Dimensiunile și proprietățile fizice ale Pământului.
+- Căldura internă a Pământului și importanța ei pentru mediul natural și societatea umană.
+- Gravitația terestră și importanța ei.
+- Mișcarea de rotație: direcție, durată și consecințe geografice.
+- Mișcarea de revoluție: durată, înclinarea axei terestre și consecințe geografice.
+- Legătura dintre mișcările Pământului, succesiunea zilei și nopții și anotimpuri.
+
+1.2. Reprezentarea cartografică a spațiului terestru
+- Globul geografic, harta geografică și planul: caracteristici și utilizări.
+- Elementele hărții și semnele convenționale.
+- Tipuri de hărți și alegerea hărții potrivite pentru o sarcină.
+- Scara numerică și scara grafică.
+- Orientarea pe hartă și punctele cardinale/intercardinale.
+- Rețeaua de grade: paralele și meridiane.
+- Ecuatorul, meridianul Greenwich, tropicele și cercurile polare.
+- Latitudinea și longitudinea geografică.
+- Determinarea coordonatelor geografice pe hartă.
+- Localizarea obiectivelor geografice pe suport cartografic.
+
+1.3. Ora pe Glob
+- Ora locală și relația ei cu longitudinea.
+- Ora oficială și fusurile orare.
+- Harta fuselor orare.
+- Linia internațională de schimbare a datei.
+- Calcularea diferenței de timp dintre localități.
+- Stabilirea orei și datei la destinație, ținând cont de direcția deplasării.
+
+### MODULUL 2 – GEOGRAFIA FIZICĂ GENERALĂ
+
+Acest modul acoperă litosfera, atmosfera, hidrosfera, biosfera/solul și mediile geografice, conform programei oficiale.
+
+2.1. Litosfera
+- Structura internă a Pământului.
+- Scoarța terestră și litosfera: deosebiri și relații.
+- Procese endogene.
+- Mișcări tectonice și legătura lor cu dinamica scoarței terestre.
+- Vulcanismul: cauze, tipuri de manifestare și efecte.
+- Cutremurele de pământ: cauze, distribuție, efecte și măsuri de protecție.
+- Relieful și criterii de clasificare a formelor de relief.
+- Unitățile majore de relief ale uscatului: munți, podișuri, dealuri și câmpii.
+- Unitățile majore de relief ale bazinelor oceanice.
+- Procese exogene și agenții modelatori.
+- Relieful gravitațional și alunecările de teren.
+- Relieful torențial.
+- Relieful fluvial.
+- Relieful carstic.
+- Relieful eolian.
+- Relieful antropic.
+- Procese și fenomene geografice de risc: cutremure, erupții vulcanice și alunecări de teren.
+- Rolul scoarței terestre în natură și pentru societatea umană.
+
+2.2. Atmosfera terestră
+- Compoziția atmosferei.
+- Structura pe verticală a atmosferei.
+- Temperatura aerului și factorii care o influențează.
+- Variația temperaturii aerului pe verticală.
+- Repartiția geografică a temperaturii aerului.
+- Presiunea atmosferică și repartiția ei geografică.
+- Vânturile: formare, direcție, tipuri și importanță.
+- Alizeele și musonii.
+- Ciclonii și anticiclonii.
+- Precipitațiile atmosferice: formare, tipuri și repartiție geografică.
+- Vremea și prevederea vremii.
+- Clima și factorii de formare a climei.
+- Zonele climatice și tipurile de climă.
+- Hărțile climatice: citire și interpretare.
+- Climograme: citire, descriere și deducerea tipului de climă.
+- Amplitudinea termică și calcularea ei.
+- Gradientul termic vertical și aplicarea lui în exerciții.
+- Fenomene geografice de risc: ploi acide, grindină, secetă și smog.
+- Rolul atmosferei în natură și pentru societatea umană.
+
+2.3. Hidrosfera
+- Circulația și repartiția apei pe Glob.
+- Componentele hidrosferei.
+- Oceanul Planetar și principalele sale subdiviziuni.
+- Proprietățile fizice și chimice ale apelor oceanice.
+- Râurile: izvor, curs, afluenți, confluență, vărsare și alte elemente.
+- Bazine hidrografice și cumpene de ape.
+- Sursele de alimentare ale râurilor.
+- Regimul de scurgere al râurilor.
+- Importanța râurilor pentru natură și societate.
+- Lacurile: clasificare, caracteristici generale și importanță.
+- Lacuri tectonice și glaciare – exemple și localizare.
+- Delte, estuare și limane.
+- Fenomene geografice de risc: tsunami și inundații.
+- Rolul hidrosferei în natură și pentru societatea umană.
+
+2.4. Biosfera și solul
+- Biosfera și limitele ei generale.
+- Solul și importanța lui.
+- Factorii de pedogeneză.
+- Principalele tipuri de sol de pe Terra.
+- Relația dintre climă, sol, vegetație și faună.
+- Distribuția zonală a vegetației și lumii animale.
+- Rolul biosferei și al solului în natură și pentru societatea umană.
+- Fenomene de risc: dispariția unor specii ale lumii organice și pandemiile.
+- Măsuri de protecție a biodiversității și solurilor.
+
+2.5. Mediile geografice
+- Noțiunea de mediu geografic.
+- Mediile ecuatoriale și subecuatoriale.
+- Mediile tropicale și subtropicale.
+- Mediile temperate.
+- Mediile subpolare și polare.
+- Caracterizarea mediilor prin climă, ape, soluri, vegetație și faună.
+- Localizarea mediilor geografice pe hărți tematice.
+- Relațiile dintre componentele mediului geografic.
+
+### MODULUL 3 – GEOGRAFIA UMANĂ ȘI ECONOMICĂ A LUMII
+
+Acest modul urmează domeniul oficial „Geografia umană a lumii”.
+
+3.1. Harta politică a lumii
+- Harta politică: noțiune și rol.
+- Schimbările cantitative și calitative ale hărții politice în perioada contemporană.
+- Statul și principalele sale caracteristici.
+- Tipologia statelor lumii.
+- State monarhii și republici.
+- State unitare și federale.
+- Poziția economico-geografică: noțiune, avantaje și dezavantaje.
+- Localizarea statelor și capitalelor pe hărți politice.
+
+3.2. Condițiile și resursele naturale
+- Deosebirea dintre condiții naturale și resurse naturale.
+- Clasificarea resurselor naturale.
+- Resurse extraatmosferice și ale atmosferei.
+- Resurse agroclimatice.
+- Resurse hidrosferice.
+- Resurse ale litosferei: minerale, energetice și alte categorii relevante.
+- Resurse ale biosferei.
+- Resurse de sol și fond funciar.
+- Resurse regenerabile și neregenerabile.
+- Repartiția geografică a resurselor și rolul lor economic.
+- Valorificarea rațională și problema epuizării resurselor.
+
+3.3. Populația lumii
+- Numărul și dinamica numerică a populației.
+- Mișcarea naturală a populației.
+- Natalitatea și rata natalității.
+- Mortalitatea și rata mortalității.
+- Bilanțul natural al populației.
+- Tranziția demografică și tipurile de reproducere a populației.
+- Politici demografice.
+- Mobilitatea teritorială a populației: migrație, factori, tipuri și importanță.
+- Bilanțul migratoriu.
+- Exodul de intelecte.
+- Repartiția geografică și densitatea populației.
+- Structura populației pe grupe de vârstă și pe genuri.
+- Speranța de viață la naștere.
+- Structura socio-economică și resursele umane.
+- Îmbătrânirea demografică.
+- Migrația ilegală.
+- Interpretarea piramidelor populației și a tabelelor statistice.
+
+3.4. Așezările umane și urbanizarea
+- Așezările rurale și urbane.
+- Urbanizarea: esență, factori și consecințe.
+- Forme de aglomerare urbană.
+- Aglomerări urbane și megalopolisuri.
+- Urbanizarea falsă.
+- Probleme actuale ale orașelor.
+- Relația dintre populație, așezări și activitățile economice.
+
+3.5. Economia mondială
+- Economia mondială: noțiune și structură.
+- Produsul Intern Brut (PIB) și utilizarea lui ca indicator economic.
+- Structura economiei pe sectoare și ramuri.
+- Diviziunea geografică internațională a muncii.
+- Ramuri de specializare internațională.
+- Integrarea economică.
+- Balanța comercială.
+
+3.6. Agricultura mondială
+- Factorii dezvoltării agriculturii.
+- Agricultura tradițională și agricultura modernă.
+- Structura agriculturii pe ramuri.
+- Cultura plantelor: principalele subramuri, caracterizare și importanță.
+- Cereale și principalele regiuni de cultură.
+- Plante tehnice și alte culturi relevante.
+- Creșterea animalelor: principalele subramuri, caracterizare și importanță.
+- Repartiția geografică a agriculturii.
+- Legătura dintre condițiile naturale și specializarea agricolă.
+
+3.7. Industria mondială
+- Factorii de amplasare a industriei.
+- Structura industriei pe ramuri și subramuri.
+- Industria energetică.
+- Industria metalurgică.
+- Industria constructoare de mașini și de prelucrare a metalelor.
+- Industria ușoară.
+- Industria alimentară.
+- Materii prime, produse finite și factori de amplasare.
+- Repartiția geografică a principalelor ramuri industriale.
+
+3.8. Serviciile
+- Sectorul serviciilor: rol și structură pe ramuri.
+- Transporturile: tipuri, rol și importanță.
+- Comunicațiile.
+- Turismul: factori de dezvoltare și clasificare.
+- Marile zone turistice ale Globului.
+- Localizarea unor obiective și destinații turistice pe hartă.
+
+3.9. Relațiile economice internaționale
+- Formele principale ale relațiilor economice internaționale.
+- Comerțul internațional.
+- Exportul și importul.
+- Balanța comercială și interpretarea ei.
+- Integrarea economică și importanța ei.
+- Uniunea Europeană (UE).
+- OPEC.
+
+### MODULUL 4 – CARACTERIZAREA ECONOMICO-GEOGRAFICĂ A STATELOR
+
+Statele de mai jos sunt cele nominalizate în programa oficială. Nu extinde lista obligatorie fără un motiv clar din programa sau din obiectivele geografice ale curriculumului liceal.
+
+Pentru fiecare stat, creează taskuri de studiu după același algoritm:
+- Poziția geografică și economico-geografică.
+- Capitala și localizarea pe hartă.
+- Statele vecine și ieșirea la mare/ocean, dacă există.
+- Condiții și resurse naturale relevante.
+- Populația și particularitățile demografice relevante.
+- Agricultura: ramuri și specializări.
+- Industria: ramuri și specializări.
+- Transporturile, serviciile și comerțul, după relevanță.
+- Avantaje/dezavantaje ale poziției economico-geografice.
+- Particularități și exemple care permit comparația cu alte state.
+- Localizarea statului, capitalei și obiectivelor geografice importante pe hărți tematice.
+
+EUROPA:
+- Marea Britanie.
+- Franța.
+- Germania.
+- România.
+- Ucraina.
+- Rusia.
+
+ASIA:
+- China.
+- Japonia.
+- India.
+
+AMERICA DE NORD:
+- Statele Unite ale Americii (SUA).
+
+AMERICA DE SUD:
+- Brazilia.
+
+AFRICA:
+- Republica Africa de Sud.
+
+AUSTRALIA ȘI OCEANIA:
+- Uniunea Australiană.
+
+Competențe de hartă asociate modulului:
+- Identificarea statelor și capitalelor nominalizate.
+- Identificarea vecinilor și a poziției față de mări/oceane.
+- Localizarea obiectivelor geografice naturale și social-economice prevăzute în curriculumul liceal.
+- Utilizarea hărților tematice pentru a deduce avantaje, dezavantaje și consecințe economice.
+
+### MODULUL 5 – GEOGRAFIA REPUBLICII MOLDOVA
+
+Acest modul organizează studiul mediului geografic al Republicii Moldova și aplicarea temelor oficiale la nivel național și local. Păstrează accentul pe relațiile dintre componente, pe utilizarea hărților și pe problemele geografice ale țării.
+
+5.1. Mediul geografic al Republicii Moldova
+- Poziția geografică a Republicii Moldova.
+- Particularitățile mediului geografic în context european și mondial.
+- Mediul natural, mediul antropizat și mediul antropic.
+- Componentele abiotice, biotice și antropice.
+- Relațiile dintre componentele mediului geografic.
+
+5.2. Relieful și substratul geologic
+- Structura geologică și principalele tipuri de roci, la nivelul necesar înțelegerii reliefului și resurselor.
+- Unitățile și formele majore de relief.
+- Distribuția spațială a principalelor forme de relief.
+- Resursele minerale și valorificarea lor.
+- Procese de risc asociate reliefului, în special alunecările de teren.
+- Localizarea unităților de relief și a obiectivelor geografice pe hartă.
+
+5.3. Clima
+- Factorii de formare a climei Republicii Moldova.
+- Caracteristicile generale ale temperaturii aerului.
+- Repartiția temperaturilor și precipitațiilor.
+- Vânturile și masele de aer relevante.
+- Fenomene climatice de risc: secetă, grindină, înghețuri și alte fenomene relevante.
+- Interpretarea datelor climatice și a climogramelor, unde sunt oferite.
+
+5.4. Apele
+- Rețeaua hidrografică a Republicii Moldova.
+- Nistrul și Prutul: localizare și caracteristici generale.
+- Râurile mici și principalele lacuri/acumulări de apă.
+- Resursele de apă și importanța lor.
+- Probleme privind calitatea și disponibilitatea apei.
+- Localizarea principalelor obiective hidrografice pe hartă.
+
+5.5. Solurile, vegetația și fauna
+- Principalele tipuri de sol și repartiția lor.
+- Fertilitatea și valorificarea solurilor.
+- Degradarea solurilor și eroziunea.
+- Vegetația naturală și lumea animală.
+- Arii protejate și conservarea biodiversității.
+
+5.6. Populația și așezările umane
+- Numărul și dinamica populației.
+- Natalitatea, mortalitatea și bilanțul natural.
+- Migrația și bilanțul migratoriu.
+- Densitatea și repartiția teritorială a populației.
+- Structura pe vârste și genuri.
+- Îmbătrânirea demografică și alte probleme demografice.
+- Așezările rurale și urbane.
+- Urbanizarea și problemele așezărilor.
+- Interpretarea tabelelor, diagramelor și datelor statistice despre Republica Moldova.
+
+5.7. Economia Republicii Moldova
+- Particularități generale ale economiei naționale.
+- Condiții și resurse naturale cu importanță economică.
+- Agricultura: cultura plantelor și creșterea animalelor.
+- Industria: ramuri importante și factori de amplasare.
+- Industria alimentară și legătura cu agricultura.
+- Energia și resursele energetice.
+- Transporturile și poziția de tranzit.
+- Comerțul exterior: exporturi, importuri și balanța comercială, la nivelul datelor utilizate în exerciții.
+- Localizarea unor obiective economice pe hărți tematice.
+
+5.8. Problemele mediului în Republica Moldova
+- Poluarea aerului și a apelor.
+- Degradarea și eroziunea solurilor.
+- Despădurirea și degradarea vegetației.
+- Gestionarea resurselor de apă.
+- Ariile naturale protejate.
+- Hazarduri naturale și antropice relevante pentru țară.
+- Cauze, consecințe și măsuri de prevenire/soluționare.
+
+### MODULUL 6 – MEDIUL, PROBLEMELE GLOBALE ȘI DEZVOLTAREA SUSTENABILĂ
+
+Acest modul corespunde domeniului oficial „Geografie: Republica Moldova și lumea contemporană”. Temele trebuie abordate atât la scară globală, cât și regională/locală, inclusiv prin exemple din Republica Moldova.
+
+6.1. Calitatea, valorificarea și protecția mediului
+- Degradarea mediului.
+- Efectul de seră.
+- Monitoringul mediului.
+- Patrimoniul natural și patrimoniul cultural.
+- Calitatea, valorificarea și protecția mediului aerian.
+- Calitatea, valorificarea și protecția mediului acvatic.
+- Protecția vegetației naturale.
+- Protecția lumii animale.
+- Protecția solului și subsolului.
+- Conservarea naturii și protecția patrimoniului cultural.
+- Ariile protejate în lume și în Republica Moldova.
+
+6.2. Problemele globale ale lumii contemporane
+- Modificările climatice la nivel global, regional și local.
+- Despădurirea.
+- Deșertificarea.
+- Poluarea mediului la nivel global și local.
+- Criza energetică.
+- Asigurarea societății cu resurse naturale la nivel mondial și în Republica Moldova.
+- Asigurarea cu apă potabilă la nivel mondial și local.
+- Problema demografică și migrația populației la nivel mondial și în Republica Moldova.
+- Problema alimentară la nivel mondial și în Republica Moldova.
+- Hazardurile naturale și antropice la nivel mondial și în Republica Moldova.
+- Pentru fiecare problemă: cauze, repartiție, consecințe, exemple și măsuri de soluționare.
+
+6.3. Dezvoltarea sustenabilă
+- Noțiunea de dezvoltare sustenabilă.
+- Caracteristicile generale ale dezvoltării sustenabile.
+- Valorificarea rațională a patrimoniului natural și cultural.
+- Măsuri și acțiuni de protecție și valorificare rațională la nivel mondial și în Republica Moldova.
+- Evaluarea eficienței măsurilor propuse, cu argumente și exemple concrete.
+
+### MODULUL 7 – COMPETENȚE PRACTICE ȘI ANTRENAMENT BAC (TRANSVERSAL)
+
+IMPORTANT: Modulul 7 nu se studiază doar la final. Competențele se exersează din prima lună și se reiau în fiecare modul relevant. În aplicație, urmărește separat progresul la aceste competențe.
+
+7.1. Competențe cartografice
+- Citirea hărților fizice, politice și tematice.
+- Orientarea pe hartă.
+- Determinarea coordonatelor geografice.
+- Determinarea latitudinii și longitudinii unor obiective.
+- Utilizarea scării numerice și grafice.
+- Calcularea distanțelor în linie dreaptă pe hartă și în teren.
+- Calcularea desfășurării în grade și kilometri pe paralele/meridiane, folosind valorile indicate în item.
+- Localizarea statelor, capitalelor, unităților de relief, râurilor, mărilor, oceanelor și altor obiective din curriculumul liceal.
+- Citirea hărților fuselor orare.
+
+7.2. Calcule geografice
+- Ora locală și diferența de timp.
+- Schimbarea datei la traversarea liniei internaționale de schimbare a datei.
+- Amplitudinea termică.
+- Gradientul termic vertical.
+- Densitatea populației.
+- Rata natalității.
+- Rata mortalității.
+- Bilanțul natural.
+- Indicatori demografici și economici solicitați în programă și în modelele de itemi.
+- Calcularea și interpretarea diferențelor dintre valori statistice.
+- Scrierea etapelor de calcul, cu unități de măsură și rezultat final clar.
+
+7.3. Interpretarea suporturilor grafice și statistice
+- Climograme: temperaturi, precipitații, amplitudine, emisferă și tip de climă.
+- Grafice și diagrame.
+- Piramide ale populației.
+- Tabele statistice.
+- Date despre populație, agricultură, industrie și economie.
+- Identificarea tendințelor și formularea concluziilor pe baza datelor.
+- Compararea a două regiuni, state, râuri sau fenomene pe baza criteriilor indicate.
+
+7.4. Raționament geografic și argumentare
+- Identificarea cauzei unui fenomen geografic.
+- Explicarea relației cauză–proces–consecință.
+- Deducerea consecințelor pentru mediu și activitatea umană.
+- Compararea avantajelor și dezavantajelor unei poziții geografice.
+- Explicarea influenței condițiilor naturale asupra activităților economice.
+- Propunerea unei măsuri realiste pentru o problemă de mediu sau social-economică.
+- Argumentarea măsurii printr-un exemplu concret.
+- Formularea răspunsurilor scurte, exacte și la obiect, conform verbului din cerință.
+
+7.5. Tipuri de itemi de antrenat
+- Adevărat/Fals și corectarea enunțului fals.
+- Asocierea noțiunilor, exemplelor și caracteristicilor.
+- Completarea tabelelor și schemelor.
+- Identificarea/localizarea obiectivelor pe hartă.
+- Determinări de coordonate.
+- Calcule cu hartă, scară, distanță și timp.
+- Interpretarea climogramelor, diagramelor, piramidelor și tabelelor.
+- Compararea a două obiecte geografice după criterii.
+- Deducerea cauzelor și consecințelor.
+- Argumentarea unei afirmații.
+- Evaluarea unei situații-problemă și propunerea de soluții.
+
+7.6. Antrenament cu subiecte oficiale
+- Rezolvarea itemilor selectați după fiecare temă.
+- Rezolvarea subiectelor integrale din anii precedenți, cu barem.
+- Verificarea răspunsurilor după barem, nu doar după impresia personală.
+- Înregistrarea punctajului și a greșelilor.
+- Clasificarea greșelilor: lipsă de cunoștințe, hartă/localizare, calcul, interpretare, formularea răspunsului sau gestionarea timpului.
+- Revenirea la tema care a generat greșeala.
+- Simulări complete în condiții de examen, cu durata oficială de 180 de minute.
+
+### 5.1. STRATEGIA DE STUDIU ȘI STRUCTURA UNEI LECȚII
+
+Această strategie este regula de lucru pentru pregătirea noastră. Aplicația rămâne un planner și tracker; nu trebuie să includă manuale sau lecții explicative.
+
+- Nivel de pornire: începător, aproape de la zero.
+- Durata standard a unei sesiuni/lecții: aproximativ 30–45 de minute.
+- Obiectiv: stăpânirea programei și obținerea unui rezultat bun la BAC, nu acumularea de informații suplimentare fără valoare pentru examen.
+- Păstrează timpul total al planului existent până la examen. Nu extinde calendarul doar pentru că subtemele sunt mai bine împărțite.
+
+Structura pedagogică recomandată pentru fiecare lecție, în afara aplicației:
+1. Explicație de la zero, clară și completă, fără presupunerea unor cunoștințe anterioare.
+2. Termeni și definiții care trebuie cunoscute.
+3. Schemă, desen sau reprezentare vizuală când tema permite.
+4. Exemple geografice concrete și legături cauză–efect.
+5. Ce este obligatoriu de reținut pentru BAC.
+6. Aplicare prin itemi de tip BAC: hartă, calcul, interpretare sau argumentare, în funcție de temă.
+7. Recapitulare scurtă și verificarea înțelegerii.
+
+Nu considera o temă învățată doar pentru că a fost citită. Marchează progresul teoretic separat de capacitatea de a rezolva itemi. O temă este consolidată când utilizatorul poate explica ideea principală și rezolva corect exerciții reprezentative fără ajutor.
+
+### 5.2. REGULI PENTRU GENERAREA TASKURILOR ÎN APLICAȚIE
+
+- Păstrează structura MODUL → SUBMODUL → TASK.
+- Nu transforma fiecare liniuță într-un task separat dacă ar crea o listă exagerat de lungă; grupează logic conceptele care se învață împreună.
+- Separă taskurile de teorie de cele de hartă, calcul și practică atunci când au rezultate diferite.
+- Marchează ca prioritate ridicată conținuturile explicite din programa oficială și competențele care apar repetat în exemplele de itemi.
+- Nu marca o temă drept stăpânită doar prin citire. Permite un status separat „Teorie parcursă” și „Aplicare verificată”, dacă aplicația poate susține aceste stări; în caz contrar, folosește taskuri distincte.
+- Nu dubla aceleași calcule în fiecare modul. Modulul 7 centralizează competențele, iar în modulele de conținut se atașează taskuri de aplicare relevante.
+- Pentru state, nu crea câte un task separat pentru fiecare indicator dacă poate fi urmărit un singur task de caracterizare completă și taskuri distincte pentru hartă/comparație.
+- Include recapitulări periodice și teste tematice scurte, dar păstrează simulările integrale în pagina BAC Practice.
+
+## 6. PLANIFICAREA ÎNVĂȚĂRII – NOIEMBRIE 2026 – IUNIE 2027
+
+Construiește un calendar realist, cu obiective lunare și săptămânale.
+
+### Noiembrie 2026
+Obiective:
+- Analizarea programei oficiale.
+- Familiarizarea cu structura BAC.
+- Analizarea subiectelor din 2025 și a baremului.
+- Evaluarea inițială a cunoștințelor.
+- Bazele geografiei.
+- Pământul și reprezentarea cartografică.
+- Coordonate geografice.
+- Primele calcule geografice.
+
+### Decembrie 2026
+Obiective:
+- Finalizarea bazelor geografice.
+- Litosfera.
+- Atmosfera.
+- Hidrosfera.
+- Biosfera.
+- Solurile.
+- Mediile geografice.
+- Exerciții din subiecte anterioare.
+
+### Ianuarie 2027
+Obiective:
+- Harta politică.
+- Resurse naturale.
+- Populația.
+- Așezările umane.
+- Indicatori demografici.
+- Economia mondială.
+- Agricultura.
+- Industria.
+- Sectoarele economice.
+
+### Februarie 2027
+Obiective:
+- Serviciile.
+- Transporturile.
+- Comerțul internațional.
+- Relațiile economice internaționale.
+- Caracterizarea statelor europene.
+- Localizarea capitalelor și statelor.
+- Exerciții practice.
+
+### Martie 2027
+Obiective:
+- Caracterizarea statelor extraeuropene.
+- Geografia Republicii Moldova.
+- Relieful și clima Republicii Moldova.
+- Apele și resursele.
+- Populația.
+- Economia.
+- Problemele mediului.
+
+### Aprilie 2027
+Obiective:
+- Problemele globale.
+- Dezvoltarea sustenabilă.
+- Finalizarea tuturor capitolelor.
+- Recapitularea formulelor.
+- Exerciții din toate tipurile de itemi BAC.
+- Rezolvarea subiectelor din anii precedenți.
+
+### Mai 2027
+Obiective:
+- Simulări complete.
+- Minimum un test complet pe săptămână.
+- Analizarea greșelilor.
+- Repetarea capitolelor slabe.
+- Exerciții de localizare pe hartă.
+- Exersarea încadrării în cele 180 de minute.
+
+### Iunie 2027
+Obiective:
+- Recapitulare generală.
+- Formule și calcule.
+- Localizări geografice.
+- Definiții și concepte.
+- Ultimele simulări.
+- Pregătire pentru examen.
+
+IMPORTANT:
+Acest calendar este o propunere inițială. Creează posibilitatea să mut sau să modific orice temă și termen.
+
+Nu programa automat prea multe sarcini într-o singură zi.
+
+## 7. SISTEMUL DE TASKURI
+
+Fiecare temă trebuie să aibă următoarele proprietăți:
+
+- ID unic.
+- Titlu.
+- Capitol.
+- Subcapitol.
+- Status: Not Started / In Progress / Completed.
+- Prioritate: Low / Medium / High.
+- Data planificată.
+- Data finalizării.
+- Timp estimat.
+- Timp efectiv (opțional).
+- Observații personale.
+- Tip: Theory / Map / Calculation / BAC Practice / Revision.
+
+Statusul trebuie să se actualizeze automat când bifez checkbox-ul.
+
+Vreau să pot:
+- Bifa un task.
+- Debifa un task.
+- Modifica taskul.
+- Șterge un task personal.
+- Adăuga un task personal.
+- Schimba data.
+- Schimba prioritatea.
+- Adăuga note.
+
+## 8. SISTEMUL DE PROGRES
+
+Progresul general trebuie calculat astfel:
+
+Număr taskuri completate / Număr total taskuri × 100.
+
+Afișează:
+- Progres general.
+- Progres pe fiecare modul.
+- Progres lunar.
+- Număr taskuri finalizate.
+- Număr taskuri restante.
+- Număr taskuri în desfășurare.
+
+Nu calcula progresul după timpul petrecut, ci după temele finalizate.
+
+Taskurile de recapitulare și simulările trebuie urmărite separat, pentru a nu distorsiona progresul materiei.
+
+## 9. PERSISTENȚA DATELOR
+
+FOARTE IMPORTANT!
+
+Toate datele trebuie salvate automat în localStorage.
+
+Vreau să rămână salvate:
+- Taskurile completate.
+- Progresul.
+- Datele limită.
+- Calendarul.
+- Rezultatele simulărilor.
+- Notele personale.
+- Temele de recapitulare.
+- Setările.
+
+Nu vreau să pierd progresul dacă închid browserul sau repornesc calculatorul.
+
+Adaugă:
+- Export complet al datelor în format JSON.
+- Import din JSON.
+- Buton de backup.
+- Confirmare înainte de resetarea tuturor datelor.
+
+Nu reseta datele la refresh.
+
+## 10. SETĂRI
+
+Include:
+- Modificarea datei examenului.
+- Modificarea obiectivului de notă.
+- Modificarea timpului disponibil zilnic.
+- Configurarea zilelor de studiu.
+- Modificarea temelor și termenelor.
+- Export și import date.
+- Resetarea progresului, cu confirmare.
+
+## 11. STRUCTURA NAVIGAȚIEI
+
+Sidebar în stânga:
+
+1. Dashboard
+2. Study Plan
+3. Calendar
+4. BAC Practice
+5. Revision
+6. Formulas & Map Skills
+7. Settings
+
+Sidebar-ul trebuie să poată fi restrâns.
+
+Pe mobil, transformă navigația într-un meniu compact.
+
+## 12. TEHNOLOGII
+
+Dacă proiectul nu are deja o structură tehnică, utilizează:
+
+- React.
+- TypeScript.
+- Vite.
+- Tailwind CSS.
+- Lucide React pentru iconițe.
+- Recharts pentru grafice.
+- localStorage pentru persistență.
+
+Scrie cod curat, modular și ușor de modificat.
+
+Separă:
+- Componentele UI.
+- Datele despre curriculum.
+- Logica de progres.
+- Logica de calendar.
+- Persistența datelor.
+- Tipurile TypeScript.
+
+Nu introduce backend sau autentificare. Este o aplicație personală, utilizată local.
+
+## 13. CERINȚE DE UX
+
+Aplicația trebuie să fie foarte intuitivă.
+
+Vreau să pot înțelege în maximum 5 secunde:
+- Cât am progresat.
+- Ce trebuie să învăț astăzi.
+- Ce capitole nu am terminat.
+- Câte zile au rămas până la examen.
+
+Adaugă stări vizuale clare pentru:
+- Completed.
+- In Progress.
+- Not Started.
+- Overdue.
+
+Nu utiliza prea multe ferestre pop-up.
+
+Toate acțiunile importante trebuie să fie accesibile rapid.
+
+## 14. REGULI IMPORTANTE PRIVIND PROGRAMA
+
+Programa oficială este sursa principală de adevăr.
+
+Pentru sesiunea 2027, verifică documentele în această ordine:
+1. Ordinul MEC nr. 2046 din 08.10.2026 privind programele de examen pentru sesiunea 2027.
+2. Programa de Geografie pentru examenul național de bacalaureat, aprobată prin Ordinul MEC nr. 1499 din 04.11.2021, aplicabilă pentru sesiunea 2027 în baza ordinului de aprobare a programelor.
+3. Modelele de teste, subiectele și baremele oficiale publicate de ANCE.
+4. Curriculumul liceal la Geografie pentru clasele X–XII, deoarece programa de BAC precizează că obiectivele geografice menționate în aceste curricule sunt obligatorii ca rezultate ale învățării.
+
+Surse oficiale:
+https://ance.gov.md/content/programe-de-examene
+https://ance.gov.md/sites/default/files/programa_bac_geografie_romana_1.pdf
+https://ance.gov.md/content/ordine-%C8%99i-dispozi%C8%9Bii
+https://ance.gov.md/content/informa%C8%9Bii-utile-pentru-candida%C8%9Bii-la-examenul-na%C8%9Bional-de-bacalaureat
+
+Verifică structura și temele cu documentele oficiale. Nu presupune că programa este nouă doar pentru că sesiunea este 2027. Dacă documentele oficiale se actualizează, actualizează curriculumul aplicației în consecință.
+
+Nu inventa subiecte care nu sunt în programă.
+
+Nu elimina niciun conținut obligatoriu.
+
+Dacă o temă din programa oficială lipsește din lista inițială, adaug-o.
+
+Dacă anumite teme sunt prea generale, subdivizează-le în sarcini individuale.
+
+Păstrează și competențele practice, nu doar teoria.
+
+## 15. REZULTATUL FINAL DORIT
+
+Vreau o aplicație complet funcțională, nu doar un design static.
+
+Când deschid aplicația, trebuie să văd dashboard-ul cu progresul meu.
+
+Pot intra în Study Plan, selecta un capitol, vedea toate temele și bifa ce am învățat.
+
+Progresul trebuie să se actualizeze automat peste tot.
+
+Calendarul trebuie să reflecte taskurile mele.
+
+Rezultatele simulărilor trebuie să fie păstrate și afișate în statistici.
+
+Datele trebuie să rămână salvate după închiderea browserului.
+
+### ORDINEA DE IMPLEMENTARE
+
+1. Analizează programa oficială și structurează complet materia.
+2. Construiește structura proiectului.
+3. Implementează designul general și sidebar-ul.
+4. Implementează dashboard-ul.
+5. Implementează Study Plan și toate temele.
+6. Implementează calendarul.
+7. Implementează BAC Practice și graficele.
+8. Implementează Revision.
+9. Implementează Formulas & Map Skills.
+10. Implementează localStorage, backup și import/export.
+11. Testează toate funcționalitățile.
+12. Verifică responsive design-ul.
+
+Nu te opri după realizarea dashboard-ului. Construiește întreaga aplicație.
+
+Prioritatea absolută este ca sistemul de taskuri, progresul și salvarea datelor să funcționeze corect.
+
+La final, oferă-mi instrucțiuni simple pentru pornirea aplicației local.
